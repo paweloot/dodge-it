@@ -1,10 +1,9 @@
 package com.paweloot.dodgeit
 
 import android.graphics.Bitmap
-import com.paweloot.dodgeit.GameView.Companion.screenHeight
 import com.paweloot.dodgeit.GameView.Companion.screenWidth
 
-class CookSprite(private val image: Bitmap) : CharacterSprite(image) {
+class CookSprite(private val image: Bitmap) : GameObject(image) {
 
     private var xVelocity = 5f
 

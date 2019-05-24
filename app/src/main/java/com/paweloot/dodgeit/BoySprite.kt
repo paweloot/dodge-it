@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import com.paweloot.dodgeit.GameView.Companion.screenHeight
 import com.paweloot.dodgeit.GameView.Companion.screenWidth
 
-class BoySprite(private val image: Bitmap) : CharacterSprite(image) {
+class BoySprite(private val image: Bitmap) : GameObject(image) {
 
     private var xVelocity = 5f
     private var freezed = false

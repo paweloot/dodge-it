@@ -40,7 +40,6 @@ class MainActivity : Activity(), SensorEventListener {
 
     override fun onSensorChanged(sensorEvent: SensorEvent) {
         val x = sensorEvent.values[0]
-        println(x)
 
         if (x < 0) {
             gameView.deviceTiltedRight()
