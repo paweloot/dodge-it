@@ -13,6 +13,16 @@ class MainThread(
         var canvas: Canvas? = null
     }
 
+    private var targetFPS = 60
+    private var averageFPS = 0
+
+    private var startTime: Long = 0
+    private var elapsedTime: Long = 0
+    private var waitTime: Long = 0
+    private var totalTime: Long = 0
+    private var frameCount = 0
+    private var targetTime = 1000 / targetFPS
+
     private var running: Boolean = false
 
     fun setRunning(isRunning: Boolean) {
@@ -21,6 +31,7 @@ class MainThread(
 
     override fun run() {
         while (running) {
+            startTime = System.nanoTime()
             canvas = null
 
             try {
@@ -40,8 +51,27 @@ class MainThread(
                     }
                 }
             }
+
+            elapsedTime = (System.nanoTime() - startTime) / 1000000
+            waitTime = targetTime - elapsedTime
+
+            if (waitTime > 0) {
+                try {
+                    sleep(waitTime)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+
+            totalTime += System.nanoTime() - startTime
+            frameCount++
+            if (frameCount == targetFPS) {
+                averageFPS = (1000 / ((totalTime / frameCount) / 1000000)).toInt()
+                frameCount = 0
+                totalTime = 0
+                System.out.println("FPS: $averageFPS")
+            }
         }
-
-
     }
 }
