@@ -26,6 +26,7 @@ class MainActivity : Activity(), SensorEventListener {
 
         gameView = GameView(this)
         setContentView(gameView)
+
     }
 
     override fun onResume() {
@@ -41,9 +42,9 @@ class MainActivity : Activity(), SensorEventListener {
     override fun onSensorChanged(sensorEvent: SensorEvent) {
         val x = sensorEvent.values[0]
 
-        if (x < 0) {
+        if (x < -0.5) {
             gameView.deviceTiltedRight()
-        } else {
+        } else if (x > 0.5) {
             gameView.deviceTiltedLeft()
         }
     }

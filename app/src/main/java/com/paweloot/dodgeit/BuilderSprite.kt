@@ -3,8 +3,7 @@ package com.paweloot.dodgeit
 import android.graphics.Bitmap
 import com.paweloot.dodgeit.GameView.Companion.screenWidth
 
-class CookSprite(image: Bitmap, x: Float, y: Float) : GameObject(image, x, y) {
-
+class BuilderSprite(image: Bitmap, x: Float, y: Float) : GameObject(image, x, y) {
     private var xVelocity = 5f
 
     override fun update() {
